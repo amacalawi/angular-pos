@@ -1,4 +1,6 @@
 export interface ModalData {
     name: string;
-    color: string;
+    price: number;
+    quantity: number;
+    total: number;
 }

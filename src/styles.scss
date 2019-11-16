@@ -210,7 +210,7 @@ mat-nav-list h4.text-divider {
 
 mat-card .col-sm-fix {
     float: left;
-    width: 25% !important;
+    width: 20% !important;
     position: relative;
     padding-right: 15px;
     padding-left: 15px;
@@ -275,7 +275,7 @@ mat-card .col-sm-fix .txt-wrapper label {
 @media (min-width: 1367px) {
     mat-card .col-sm-fix {
         float: left;
-        width: 20% !important;
+        width: 16.666666667% !important;
         position: relative;
         padding-right: 15px;
         padding-left: 15px;
@@ -358,7 +358,7 @@ mat-dialog-content::-webkit-scrollbar-thumb {
     background: #e1e1e1 !important;
     margin-right: 5px;
     margin-left: 5px;
-    margin-bottom: 15px;
+    margin-bottom: 25px;
 }
 
 #pos-dialog-content .total-cost {
@@ -366,4 +366,30 @@ mat-dialog-content::-webkit-scrollbar-thumb {
     padding-top: 5px;
     padding-bottom: 5px;
     margin-bottom: 10px !important;
+}
+
+.badges {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgb(0, 188, 212);
+    margin-top: 13px;
+}
+.blue-badge {
+    background: rgb(0, 188, 212);
+}
+.yellow-badge {
+    background: rgb(255, 193, 7);
+}
+.red-badge {
+    background: rgb(244, 67, 54);
+}
+.purple-badge {
+    background: rgb(156, 39, 176);
+}
+.green-badge {
+    background: rgb(76, 175, 80);
+}
+.orange-badge {
+    background: rgb(255, 183, 77);
 }

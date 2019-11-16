@@ -9,6 +9,10 @@ import { POSDialogComponent } from './pos.dialog.component';
   styleUrls: ['./pos.component.scss']
 })
 export class PosComponent implements OnInit {
+  name: string;
+  price: number;
+  quantity: number;
+  total: number;
 
   constructor(private router: Router, public dialog: MatDialog) { }
 
@@ -32,22 +36,24 @@ export class PosComponent implements OnInit {
   	searchbar = !false;
   } 
 
-  openDialog(): void {
+  openDialog($name, $price, $qty, $total): void {
     const dialogRef = this.dialog.open(POSDialogComponent, {
       width: '270px',
-      data: { name: this.name, color: this.color }
+      data: { 
+        name: $name, 
+        price: $price, 
+        quantity: $qty, 
+        total: $total
+      }
     });
 
     dialogRef.afterClosed().subscribe(res => {
-      this.color = res;
+      this.name = '';
+      this.price = 0;
+      this.quantity = 0;
+      this.total = 0;
+      console.log('closed');
     });
   }
 
-  // openDialog() {
-  //   const dialogRef = this.dialog.open(POSDialog);
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log(`Dialog result: ${result}`);
-  //   });
-  // }
 }
