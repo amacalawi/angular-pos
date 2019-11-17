@@ -88,203 +88,17 @@
 		                	<mat-card>
 		                		<div class="product-list">
 			                		<div class="row">
-			                			<div class="col-sm-fix">
-			                				<a href="javascript:;" (click)="openDialog('sample', 25.00, 1, 25.00)">
+			                			<div *ngFor="let product of products of filterBy('name')" class="col-sm-fix">
+			                				<a href="javascript:;" (click)="openDialog(product.name, product.price, 1, product.price)">
 				                				<div class="wrapper">
 					                				<div class="img-wrapper">
-					                					<img src="assets/img/1.jpg" />
+					                					<img src="{{ product.image }}" />
 					                				</div>
 					                				<div class="txt-wrapper">
-					                					<h3>Dont touch me</h3>
-					                					<label>₱25.00</label>
-					                					<span class="pull-right badges blue-badge"></span>
-					                				</div>
-					                			</div>
-					                		</a>
-			                			</div>
-			                			<div class="col-sm-fix">
-			                				<a href="#">
-				                				<div class="wrapper">
-					                				<div class="img-wrapper">
-					                					<img src="assets/img/2.jpg" />
-					                				</div>
-					                				<div class="txt-wrapper">
-					                					<h3>Dont touch me</h3>
-					                					<label>₱25.00</label>
-					                					<span class="pull-right badges yellow-badge"></span>
-					                				</div>
-					                			</div>
-					                		</a>
-			                			</div>
-			                			<div class="col-sm-fix">
-			                				<a href="#">
-				                				<div class="wrapper">
-					                				<div class="img-wrapper">
-					                					<img src="assets/img/3.jpg" />
-					                				</div>
-					                				<div class="txt-wrapper">
-					                					<h3>Dont touch me</h3>
-					                					<label>₱25.00</label>
-					                					<span class="pull-right badges red-badge"></span>
-					                				</div>
-					                			</div>
-					                		</a>
-			                			</div>
-			                			<div class="col-sm-fix">
-			                				<a href="#">
-				                				<div class="wrapper">
-					                				<div class="img-wrapper">
-					                					<img src="assets/img/4.jpg" />
-					                				</div>
-					                				<div class="txt-wrapper">
-					                					<h3>Dont touch me</h3>
-					                					<label>₱25.00</label>
-					                					<span class="pull-right badges purple-badge"></span>
-					                				</div>
-					                			</div>
-					                		</a>
-			                			</div>
-			                			<div class="col-sm-fix">
-			                				<a href="#">
-				                				<div class="wrapper">
-					                				<div class="img-wrapper">
-					                					<img src="assets/img/5.jpg" />
-					                				</div>
-					                				<div class="txt-wrapper">
-					                					<h3>Dont touch me</h3>
-					                					<label>₱25.00</label>
-					                					<span class="pull-right badges green-badge"></span>
-					                				</div>
-					                			</div>
-					                		</a>
-			                			</div>
-			                			<div class="col-sm-fix">
-			                				<a href="#">
-				                				<div class="wrapper">
-					                				<div class="img-wrapper">
-					                					<img src="assets/img/1.jpg" />
-					                				</div>
-					                				<div class="txt-wrapper">
-					                					<h3>Dont touch me</h3>
-					                					<label>₱25.00</label>
-					                					<span class="pull-right badges orange-badge"></span>
-					                				</div>
-					                			</div>
-					                		</a>
-			                			</div>
-			                			<div class="col-sm-fix">
-			                				<a href="#">
-				                				<div class="wrapper">
-					                				<div class="img-wrapper">
-					                					<img src="assets/img/2.jpg" />
-					                				</div>
-					                				<div class="txt-wrapper">
-					                					<h3>Dont touch me</h3>
-					                					<label>₱25.00</label>
-					                				</div>
-					                			</div>
-					                		</a>
-			                			</div>
-			                			<div class="col-sm-fix">
-			                				<a href="#">
-				                				<div class="wrapper">
-					                				<div class="img-wrapper">
-					                					<img src="assets/img/3.jpg" />
-					                				</div>
-					                				<div class="txt-wrapper">
-					                					<h3>Dont touch me</h3>
-					                					<label>₱25.00</label>
-					                				</div>
-					                			</div>
-					                		</a>
-			                			</div>
-			                			<div class="col-sm-fix">
-			                				<a href="#">
-				                				<div class="wrapper">
-					                				<div class="img-wrapper">
-					                					<img src="assets/img/4.jpg" />
-					                				</div>
-					                				<div class="txt-wrapper">
-					                					<h3>Dont touch me</h3>
-					                					<label>₱25.00</label>
-					                				</div>
-					                			</div>
-					                		</a>
-			                			</div>
-			                			<div class="col-sm-fix">
-			                				<a href="#">
-				                				<div class="wrapper">
-					                				<div class="img-wrapper">
-					                					<img src="assets/img/5.jpg" />
-					                				</div>
-					                				<div class="txt-wrapper">
-					                					<h3>Dont touch me</h3>
-					                					<label>₱25.00</label>
-					                				</div>
-					                			</div>
-					                		</a>
-			                			</div>
-			                			<div class="col-sm-fix">
-			                				<a href="#">
-				                				<div class="wrapper">
-					                				<div class="img-wrapper">
-					                					<img src="assets/img/1.jpg" />
-					                				</div>
-					                				<div class="txt-wrapper">
-					                					<h3>Dont touch me</h3>
-					                					<label>₱25.00</label>
-					                				</div>
-					                			</div>
-					                		</a>
-			                			</div>
-			                			<div class="col-sm-fix">
-			                				<a href="#">
-				                				<div class="wrapper">
-					                				<div class="img-wrapper">
-					                					<img src="assets/img/2.jpg" />
-					                				</div>
-					                				<div class="txt-wrapper">
-					                					<h3>Dont touch me</h3>
-					                					<label>₱25.00</label>
-					                				</div>
-					                			</div>
-					                		</a>
-			                			</div>
-			                			<div class="col-sm-fix">
-			                				<a href="#">
-				                				<div class="wrapper">
-					                				<div class="img-wrapper">
-					                					<img src="assets/img/3.jpg" />
-					                				</div>
-					                				<div class="txt-wrapper">
-					                					<h3>Dont touch me</h3>
-					                					<label>₱25.00</label>
-					                				</div>
-					                			</div>
-					                		</a>
-			                			</div>
-			                			<div class="col-sm-fix">
-			                				<a href="#">
-				                				<div class="wrapper">
-					                				<div class="img-wrapper">
-					                					<img src="assets/img/4.jpg" />
-					                				</div>
-					                				<div class="txt-wrapper">
-					                					<h3>Dont touch me</h3>
-					                					<label>₱25.00</label>
-					                				</div>
-					                			</div>
-					                		</a>
-			                			</div>
-			                			<div class="col-sm-fix">
-			                				<a href="#">
-				                				<div class="wrapper">
-					                				<div class="img-wrapper">
-					                					<img src="assets/img/5.jpg" />
-					                				</div>
-					                				<div class="txt-wrapper">
-					                					<h3>Dont touch me</h3>
-					                					<label>₱25.00</label>
+					                					<h3>{{ product.name }}
+					                					</h3>
+					                					<label>₱{{ product.price.toFixed(2) }}</label>
+					                					<span class="pull-right badges {{ product.color }}"></span>
 					                				</div>
 					                			</div>
 					                		</a>
@@ -294,7 +108,29 @@
 		                	</mat-card>
 		                </div>
 		                <div class="col-sm-3">
-		                	<mat-card>Simple card</mat-card>
+		                	<mat-card>
+		                		<mat-nav-list>
+		                			<a *ngFor="let item of items" mat-list-item>
+										<table class="table">
+											<tbody>
+												<tr>
+													<td>
+														<strong class="item-qty">{{ item.quantity }}</strong>
+													</td>
+													<td width="60%" class="p-l-10 p-r-10">
+														<strong class="item-name">{{ item.name }}</strong>
+														<br/>
+														<span class="item-price">₱{{ item.price.toFixed(2) }}</span>
+													</td>
+													<td width="30%" class="text-right">
+														<strong class="item-total">₱{{ item.total.toFixed(2) }}</strong>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</a>
+								</mat-nav-list>
+		                	</mat-card>
 		                </div>
 		            </div>     
 	            </div>           

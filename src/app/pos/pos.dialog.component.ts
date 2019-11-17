@@ -50,16 +50,18 @@ export class POSDialogComponent implements OnInit {
   }
 
   addItem() {
+    let discount = new Number(0);
+
     let json = {
       name: this.data.name,
-      quantity: parseFloat(this.data.quantity),
-      price: parseFloat(this.data.price),
-      discount: parseFloat(0),
-      total_price : parseFloat(this.data.total)
+      quantity: this.data.quantity,
+      price: this.data.price,
+      discount: discount,
+      total : this.data.total
     }
 
     sessionStorage.setItem(sessionStorage.length, JSON.stringify(json));
-    console.log('save');
+    console.log('item added');
   }
 
 

@@ -283,6 +283,14 @@ mat-card .col-sm-fix .txt-wrapper label {
     }
 }
 
+.p-l-10 {
+    padding-left: 10px !important;
+}
+
+.p-r-10 {
+    padding-right: 10px !important;
+}
+
 .p-r-0 {
     padding-right: 0;
 }
@@ -392,4 +400,40 @@ mat-dialog-content::-webkit-scrollbar-thumb {
 }
 .orange-badge {
     background: rgb(255, 183, 77);
+}
+
+
+.content .col-sm-3 mat-card {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.content .col-sm-3 mat-card .table {
+    margin-bottom: 0;
+}
+
+.content .col-sm-3 mat-card .table td, .table th { 
+    padding: 0;
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.content .col-sm-3 mat-card .mat-list-base .mat-list-item {
+    margin-top: .5rem;
+    padding: 5px 0;
+}
+
+.content .col-sm-3 mat-card .mat-list-base .mat-list-item:first-child {
+    margin-top: 0;
+}
+
+.content .col-sm-3 mat-card .mat-list-base .mat-list-item .item-price {
+    font-size: 12px;
+    float: left;
+    margin-top: -5px;
+    margin-bottom: 5px;
+}
+
+.content .col-sm-3 mat-card .mat-list-base .mat-list-item .item-qty {
+    font-size: 1.7rem;
 }
