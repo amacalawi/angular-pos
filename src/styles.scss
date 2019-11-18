@@ -432,8 +432,19 @@ mat-dialog-content::-webkit-scrollbar-thumb {
     float: left;
     margin-top: -5px;
     margin-bottom: 5px;
+    color: #5d5d5d;
+}
+
+.content .col-sm-3 mat-card .mat-list-base .mat-list-item .item-name {
+    font-size: .9rem;
+    color: #333;
 }
 
 .content .col-sm-3 mat-card .mat-list-base .mat-list-item .item-qty {
-    font-size: 1.7rem;
+    font-size: 1.5rem;
+}
+
+.content .col-sm-3 mat-card .mat-list-base .mat-list-item .item-total {
+    font-size: .8rem;
+    color: #333;
 }

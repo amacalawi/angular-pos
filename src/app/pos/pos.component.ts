@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { POSDialogComponent } from './pos.dialog.component';
+import { ProductsService } from '../services/products.services';
+import { Product } from '../shared/product';
 
 @Component({
   selector: 'app-pos',
@@ -14,55 +16,16 @@ export class PosComponent implements OnInit {
   price: number;
   quantity: number;
   total: number;
-  products: any = [
-    {
-      name: "Product 1",
-      price: 25.00,
-      category: "category-1",
-      image: "assets/img/1.jpg",
-      color: "blue-badge"
-    },
-    {
-      name: "Product 2",
-      price: 105.00,
-      category: "category-2",
-      image: "assets/img/2.jpg",
-      color: "yellow-badge"
-    },
-    {
-      name: "Product 3",
-      price: 49.00,
-      category: "category-3",
-      image: "assets/img/3.jpg",
-      color: "red-badge"
-    },
-    {
-      name: "Product 4",
-      price: 95.00,
-      category: "category-4",
-      image: "assets/img/4.jpg",
-      color: "purple-badge"
-    },
-    {
-      name: "Product 5",
-      price: 80.00,
-      category: "category-5",
-      image: "assets/img/5.jpg",
-      color: "green-badge"
-    },
-    {
-      name: "Product 6",
-      price: 140.00,
-      category: "category-6",
-      image: "assets/img/1.jpg",
-      color: "orange-badge"
-    }
-  ]
+  numberOfProducts: number;
+  limit: number;
+  page: number = 1;
+  products: Product[]; 
 
-  constructor(private router: Router, public dialog: MatDialog) { }
+  constructor(private productsService: ProductsService, private router: Router, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.getSelectedItems();
+    this.getAllProducts();
   }
 
   opened = false;
@@ -98,8 +61,8 @@ export class PosComponent implements OnInit {
       this.price = 0;
       this.quantity = 0;
       this.total = 0;
-      console.log('closed');
       this.getSelectedItems();
+      console.log('dialog closed!');
     });
   }
 
@@ -113,4 +76,14 @@ export class PosComponent implements OnInit {
     console.log(this.items);
   }
 
+  getAllProducts() {
+    this.productsService.getProducts().subscribe(
+    (products: Product[]) => {
+      this.products = products;
+      this.numberOfProducts = this.products.length;
+      this.limit = this.products.length; // Start off by showing all books on a single page.
+    });
+  }
+
+  
 }

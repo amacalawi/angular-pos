@@ -12,12 +12,16 @@ import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatBu
 import { PosComponent } from './pos/pos.component';
 import { POSDialogComponent } from './pos/pos.dialog.component';
 
+import { ProductsService } from './services/products.services';
+import { ProductFilterPipe } from './shared/product-filter.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
     HomepageComponent,
     PosComponent,
-    POSDialogComponent
+    POSDialogComponent,
+    ProductFilterPipe
   ],
   imports: [
     BrowserModule,
@@ -35,7 +39,9 @@ import { POSDialogComponent } from './pos/pos.dialog.component';
     MatDialogModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    ProductsService,
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   entryComponents: [POSDialogComponent]

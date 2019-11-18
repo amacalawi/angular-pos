@@ -8,7 +8,7 @@ import { ModalData } from './model-data';
 })
 
 export class POSDialogComponent implements OnInit {
-  indexs: number;
+  indexs: any;
 
   constructor(
     public dialogRef: MatDialogRef<POSDialogComponent>,
@@ -23,7 +23,6 @@ export class POSDialogComponent implements OnInit {
   }
 
   compute(v: number) {
-
     let vals = new Number(this.data.quantity);
     let str = new String(this.data.quantity);
 
@@ -37,7 +36,6 @@ export class POSDialogComponent implements OnInit {
   }
 
   clear() {
-
     let vals = new String(this.data.quantity);
 
     if (vals.length > 1) {
@@ -50,6 +48,7 @@ export class POSDialogComponent implements OnInit {
   }
 
   addItem() {
+    this.indexs = (sessionStorage.length == 0) ? new Number(0) : new Number(sessionStorage.length);
     let discount = new Number(0);
 
     let json = {
@@ -60,7 +59,7 @@ export class POSDialogComponent implements OnInit {
       total : this.data.total
     }
 
-    sessionStorage.setItem(sessionStorage.length, JSON.stringify(json));
+    sessionStorage.setItem(this.indexs, JSON.stringify(json));
     console.log('item added');
   }
 
