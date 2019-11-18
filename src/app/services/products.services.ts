@@ -1,15 +1,12 @@
 import { Injectable } from '@angular/core';
-// import { Http, Response } from '@angular/http';
+import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
-
-import { Product } from '../shared/product';
+import { map, catchError } from 'rxjs/operators';
 
 @Injectable() 
 export class ProductsService {
-  constructor(private http: HttpClient) {
+  private _jsonURL = 'app/data/products.json';
+  constructor(private httpClient: HttpClient) {
   }
   
   /**
@@ -17,16 +14,26 @@ export class ProductsService {
    * 
    * @return {Observable<Product[]>} A list of books.
    */
-  getProducts(): Observable<Product[]> {
-    return this.http.get('app/data/products.json') 
-    .subscribe(data => {
-       console.log(data);
-    });
-    .catch(res => console.log(res));
 
-
-    // return this.http.get('app/data/products.json')
-    //   .map(res => res.json().data)
-    //   .catch(res => console.log(res));
+  getProducts(): Observable<any[]> {
+    return this.httpClient
+      .get(this._jsonURL)
+      .pipe(
+        map((body: any) => body),
+        catchError(() => of('Error, could not load joke :-('))
+      );
   }
+
+  // getProducts(): Observable<Product[]> {
+  //   return this.http.get('app/data/products.json') 
+  //   .subscribe(data => {
+  //      console.log(data);
+  //   });
+  //   .catch(res => console.log(res));
+
+
+  //   // return this.http.get('app/data/products.json')
+  //   //   .map(res => res.json().data)
+  //   //   .catch(res => console.log(res));
+  // }
 }

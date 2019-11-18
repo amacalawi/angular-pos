@@ -1,16 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { POSDialogComponent } from './pos.dialog.component';
 import { ProductsService } from '../services/products.services';
 import { Product } from '../shared/product';
+import { finalize, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-pos',
   templateUrl: './pos.component.html',
   styleUrls: ['./pos.component.scss']
 })
-export class PosComponent implements OnInit {
+export class PosComponent implements OnInit, OnDestroy {
+
+  ngOnDestroy(): void {
+    // throw new Error("Method not implemented.");
+  }
+  
   items: any = [];
   name: string;
   price: number;
@@ -77,12 +83,21 @@ export class PosComponent implements OnInit {
   }
 
   getAllProducts() {
-    this.productsService.getProducts().subscribe(
-    (products: Product[]) => {
+
+    this.productsService.getProducts().pipe(
+      map(data => data)
+    ).subscribe((products: Product[]) => {
       this.products = products;
       this.numberOfProducts = this.products.length;
-      this.limit = this.products.length; // Start off by showing all books on a single page.
-    });
+      this.limit = this.products.length;
+    }, error => {console.log(error)});
+    
+    // this.productsService.getProducts().subscribe(
+    // (products: Product[]) => {
+    //   this.products = products;
+    //   this.numberOfProducts = this.products.length;
+    //   this.limit = this.products.length; // Start off by showing all books on a single page.
+    // });
   }
 
   
