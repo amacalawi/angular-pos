@@ -4,7 +4,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { POSDialogComponent } from './pos.dialog.component';
 import { ProductsService } from '../services/products.services';
 import { Product } from '../shared/product';
-import { finalize, map } from 'rxjs/operators';
+import { finalize, filter, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-pos',
@@ -38,6 +38,11 @@ export class PosComponent implements OnInit, OnDestroy {
 
   log(state) {
     console.log(state)
+  }
+
+  onContextMenuAction($items) {
+    document.querySelector('#filterCategory span').innerHTML = $items;
+    this.getAllProducts($items);
   }
 
   goTo(link) {
@@ -82,22 +87,26 @@ export class PosComponent implements OnInit, OnDestroy {
     console.log(this.items);
   }
 
-  getAllProducts() {
-
-    this.productsService.getProducts().pipe(
-      map(data => data)
-    ).subscribe((products: Product[]) => {
-      this.products = products;
-      this.numberOfProducts = this.products.length;
-      this.limit = this.products.length;
-    }, error => {console.log(error)});
-    
-    // this.productsService.getProducts().subscribe(
-    // (products: Product[]) => {
-    //   this.products = products;
-    //   this.numberOfProducts = this.products.length;
-    //   this.limit = this.products.length; // Start off by showing all books on a single page.
-    // });
+  getAllProducts($filter = '') {
+    if ($filter != '' && $filter != 'All') {
+        console.log('true');
+        this.productsService.getProducts().pipe(
+          map(data => data)
+        ).subscribe((products: Product[]) => {
+          this.products = products.filter(product => product.category === $filter);
+          this.numberOfProducts = this.products.length;
+          this.limit = this.products.length;
+        }, error => {console.log(error)});
+    } else {
+        console.log('false');
+        this.productsService.getProducts().pipe(
+          map(data => data)
+        ).subscribe((products: Product[]) => {
+          this.products = products;
+          this.numberOfProducts = this.products.length;
+          this.limit = this.products.length;
+        }, error => {console.log(error)});
+    }
   }
 
   

@@ -53,10 +53,11 @@
 									<i class="flaticon-squares-4"></i>
 								</button>
 								
-								<button mat-button [matMenuTriggerFor]="menu">All</button>
+								<button id="filterCategory" mat-button [matMenuTriggerFor]="menu">All</button>
 								<mat-menu #menu="matMenu">
-									<button mat-menu-item>Category 1</button>
-									<button mat-menu-item>Category 2</button>
+									<button mat-menu-item (click)="onContextMenuAction('All')">All</button>
+									<button mat-menu-item (click)="onContextMenuAction('Category 1')">Category 1</button>
+									<button mat-menu-item (click)="onContextMenuAction('Category 2')">Category 2</button>
 								</mat-menu>
                             </div>
                         </div>
@@ -88,7 +89,7 @@
 		                	<mat-card>
 		                		<div class="product-list">
 			                		<div class="row">
-			                			<div *ngFor="let product of products of filterBy('name')" class="col-sm-fix">
+			                			<div *ngFor="let product of products" class="col-sm-fix">
 			                				<a href="javascript:;" (click)="openDialog(product.name, product.price, 1, product.price)">
 				                				<div class="wrapper">
 					                				<div class="img-wrapper">

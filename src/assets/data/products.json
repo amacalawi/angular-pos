@@ -3,7 +3,7 @@
     "id": 1,
     "name": "Product 1",
     "price": 25.00,
-    "category": "category-1",
+    "category": "Category 1",
     "image": "assets/img/1.jpg",
     "color": "blue-badge"
   },
@@ -11,9 +11,9 @@
     "id": 2,
     "name": "Product 2",
     "price": 25.00,
-    "category": "category-2",
+    "category": "Category 2",
     "image": "assets/img/2.jpg",
-    "color": "blue-badge"
+    "color": "red-badge"
   },
   { 
     "id": 3,
@@ -21,7 +21,7 @@
     "price": 25.00,
     "category": "category-3",
     "image": "assets/img/3.jpg",
-    "color": "blue-badge"
+    "color": "orange-badge"
   },
   { 
     "id": 41,
@@ -29,7 +29,7 @@
     "price": 25.00,
     "category": "category-4",
     "image": "assets/img/4.jpg",
-    "color": "blue-badge"
+    "color": "green-badge"
   },
   { 
     "id": 5,
@@ -37,14 +37,14 @@
     "price": 25.00,
     "category": "category-5",
     "image": "assets/img/5.jpg",
-    "color": "blue-badge"
+    "color": "yellow-badge"
   },
   { 
     "id": 6,
     "name": "Product 6",
     "price": 25.00,
     "category": "category-6",
-    "image": "assets/img/6.jpg",
-    "color": "blue-badge"
+    "image": "assets/img/1.jpg",
+    "color": "purple-badge"
   }
 ]

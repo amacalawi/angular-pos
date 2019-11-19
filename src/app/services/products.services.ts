@@ -5,7 +5,7 @@ import { map, catchError } from 'rxjs/operators';
 
 @Injectable() 
 export class ProductsService {
-  private _jsonURL = 'app/data/products.json';
+  private _jsonURL = 'assets/data/products.json';
   constructor(private httpClient: HttpClient) {
   }
   
