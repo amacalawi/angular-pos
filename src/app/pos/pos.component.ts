@@ -16,7 +16,7 @@ export class PosComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     // throw new Error("Method not implemented.");
   }
-  
+
   items: any = [];
   name: string;
   price: number;
@@ -25,7 +25,7 @@ export class PosComponent implements OnInit, OnDestroy {
   numberOfProducts: number;
   limit: number;
   page: number = 1;
-  products: Product[]; 
+  products: Product[];
 
   constructor(private productsService: ProductsService, private router: Router, public dialog: MatDialog) { }
 
@@ -41,28 +41,27 @@ export class PosComponent implements OnInit, OnDestroy {
   }
 
   onContextMenuAction($items) {
-    document.querySelector('#filterCategory span').innerHTML = $items;
     this.getAllProducts($items);
   }
 
   goTo(link) {
-    setTimeout (() => {
-       this.router.navigate(['/' + link]);
-    }, 300); 
+    setTimeout(() => {
+      this.router.navigate(['/' + link]);
+    }, 300);
   }
 
   searchbar = true;
-  toggleClass(searchbar){
-  	searchbar = !false;
-  } 
+  toggleClass(searchbar) {
+    searchbar = !false;
+  }
 
   openDialog($name, $price, $qty, $total): void {
     const dialogRef = this.dialog.open(POSDialogComponent, {
       width: '270px',
-      data: { 
-        name: $name, 
-        price: $price, 
-        quantity: $qty, 
+      data: {
+        name: $name,
+        price: $price,
+        quantity: $qty,
         total: $total
       }
     });
@@ -80,34 +79,38 @@ export class PosComponent implements OnInit, OnDestroy {
   getSelectedItems() {
     this.items = [];
     let arr = [];
-    Object.keys(sessionStorage).forEach(function(key){
+    for (let i = 0; i < sessionStorage.length; i++) {
+      let key: any = i;
       arr.push(JSON.parse(sessionStorage.getItem(key)));
-    });
+    }
     this.items = arr;
     console.log(this.items);
+    // Object.keys(sessionStorage).forEach(function(key){
+    //   arr.push(JSON.parse(sessionStorage.getItem(key)));
+    // });
   }
 
   getAllProducts($filter = '') {
     if ($filter != '' && $filter != 'All') {
-        console.log('true');
-        this.productsService.getProducts().pipe(
-          map(data => data)
-        ).subscribe((products: Product[]) => {
-          this.products = products.filter(product => product.category === $filter);
-          this.numberOfProducts = this.products.length;
-          this.limit = this.products.length;
-        }, error => {console.log(error)});
+      console.log('true');
+      this.productsService.getProducts().pipe(
+        map(data => data)
+      ).subscribe((products: Product[]) => {
+        this.products = products.filter(product => product.category === $filter);
+        this.numberOfProducts = this.products.length;
+        this.limit = this.products.length;
+      }, error => { console.log(error) });
     } else {
-        console.log('false');
-        this.productsService.getProducts().pipe(
-          map(data => data)
-        ).subscribe((products: Product[]) => {
-          this.products = products;
-          this.numberOfProducts = this.products.length;
-          this.limit = this.products.length;
-        }, error => {console.log(error)});
+      console.log('false');
+      this.productsService.getProducts().pipe(
+        map(data => data)
+      ).subscribe((products: Product[]) => {
+        this.products = products;
+        this.numberOfProducts = this.products.length;
+        this.limit = this.products.length;
+      }, error => { console.log(error) });
     }
   }
 
-  
+
 }

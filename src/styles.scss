@@ -67,10 +67,6 @@ button .mat-button-wrapper {
 	font-size: 1.3rem;
 }
 
-button .mat-button-wrapper i {
-	/*margin-right: 10px;*/
-}
-
 .layer {
 	font-size: 1.3rem;
 }
@@ -144,6 +140,10 @@ mat-nav-list h4.text-divider {
 
 .mat-icon-button .mat-icon, .mat-icon-button i {
     line-height: 25px;
+}
+
+.delete-items-btn {
+    font-size: 28px;
 }
 
 .md-whiteframe-1dp, 
@@ -283,6 +283,10 @@ mat-card .col-sm-fix .txt-wrapper label {
     }
 }
 
+.p-l-15 {
+    padding-left: 15px;
+}
+
 .p-l-10 {
     padding-left: 10px !important;
 }
@@ -327,6 +331,7 @@ mat-card .col-sm-fix .txt-wrapper label {
 
 /* width */
 
+.item-lists::-webkit-scrollbar,
 .product-list::-webkit-scrollbar,
 mat-dialog-content::-webkit-scrollbar {
     width: 12px;
@@ -334,6 +339,7 @@ mat-dialog-content::-webkit-scrollbar {
 }
 
 /* Track */
+.item-lists::-webkit-scrollbar-track:hover,
 .product-list::-webkit-scrollbar-track:hover,
 mat-dialog-content::-webkit-scrollbar-track:hover {
     background: #ececec;
@@ -341,10 +347,12 @@ mat-dialog-content::-webkit-scrollbar-track:hover {
 }
 
 /* Handle */
+.item-lists::-webkit-scrollbar-thumb,
 .product-list::-webkit-scrollbar-thumb {
     box-shadow: none !important;
 }
 
+.item-lists:hover::-webkit-scrollbar-thumb,
 .product-list:hover::-webkit-scrollbar-thumb,
 mat-dialog-content::-webkit-scrollbar-thumb {
     border: 2px solid transparent;
@@ -402,6 +410,9 @@ mat-dialog-content::-webkit-scrollbar-thumb {
     background: rgb(255, 183, 77);
 }
 
+.c-red {
+    color: rgb(244, 67, 54);
+}
 
 .content .col-sm-3 mat-card {
     padding-left: 0;
@@ -418,9 +429,17 @@ mat-dialog-content::-webkit-scrollbar-thumb {
     border-bottom: 1px solid #dee2e6;
 }
 
+.content .col-sm-3 mat-card a:last-child .table td {
+    border-bottom: 1px solid transparent;
+}
+
 .content .col-sm-3 mat-card .mat-list-base .mat-list-item {
     margin-top: .5rem;
     padding: 5px 0;
+}
+
+.content .col-sm-3 mat-card .mat-list-item-content {
+    padding-right: 2px;
 }
 
 .content .col-sm-3 mat-card .mat-list-base .mat-list-item:first-child {
@@ -447,4 +466,53 @@ mat-dialog-content::-webkit-scrollbar-thumb {
 .content .col-sm-3 mat-card .mat-list-base .mat-list-item .item-total {
     font-size: .8rem;
     color: #333;
+}
+
+.content .col-sm-3 mat-card .item-lists {
+    height: calc(100vh - 273px);
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.content .col-sm-3 mat-card .sub-total-card-holder {
+    border-top: 1px solid #dee2e6;
+    box-shadow: 0 -2px 2px -2px  rgba(0, 0, 0, 0.15);
+    position: absolute;
+    bottom: 0;
+    height: 193px;
+    width: 100%;
+    padding-top: 10px;
+}
+
+.content .col-sm-3 mat-card .sub-total-card-holder .row .col:first-child {
+    padding-left: 30px;
+    font-size: 0.8rem;
+    margin: 3px 0px;
+    color: #333;
+}
+
+.content .col-sm-3 mat-card .sub-total-card-holder .row .col:last-child {
+    padding-right: 30px;
+    font-size: 0.8rem;
+    color: #333;
+    margin: 3px 0px;
+}
+
+.content .col-sm-3 mat-card .sub-total-card-holder .row .col h5 {
+    margin-bottom: 0;
+}
+
+.content .col-sm-3 mat-card .divider {
+    border-top: 1.5px dashed #333;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.content .col-sm-3 mat-card button.checkout {
+    background: #ff9f00;
+    color: #fff;
+    border-radius: 0;
+    margin-top: 10px;
 }

@@ -49,16 +49,21 @@
 								<button mat-button (click)="toggleClass(searchbar = !searchbar)">
 									<i class="flaticon-search"></i>
 								</button>
-								<button mat-button>
+								<button mat-button id="filterCategory" mat-button [matMenuTriggerFor]="menu">
 									<i class="flaticon-squares-4"></i>
 								</button>
-								
-								<button id="filterCategory" mat-button [matMenuTriggerFor]="menu">All</button>
 								<mat-menu #menu="matMenu">
 									<button mat-menu-item (click)="onContextMenuAction('All')">All</button>
 									<button mat-menu-item (click)="onContextMenuAction('Category 1')">Category 1</button>
 									<button mat-menu-item (click)="onContextMenuAction('Category 2')">Category 2</button>
 								</mat-menu>
+								
+								<!-- <button id="filterCategory" mat-button [matMenuTriggerFor]="menu">All</button>
+								<mat-menu #menu="matMenu">
+									<button mat-menu-item (click)="onContextMenuAction('All')">All</button>
+									<button mat-menu-item (click)="onContextMenuAction('Category 1')">Category 1</button>
+									<button mat-menu-item (click)="onContextMenuAction('Category 2')">Category 2</button>
+								</mat-menu> -->
                             </div>
                         </div>
                     </div>
@@ -71,9 +76,12 @@
 
                                <!--  <button mat-icon-button class="font-2">
                                     <i class="la la-trash"></i>
-                                </button> -->
+								</button> -->
+								<button mat-icon-button>
+									<mat-icon class="delete-items-btn">delete</mat-icon>
+								</button>
                                 <button mat-icon-button>
-									<i class="flaticon-more"></i>
+									<mat-icon class="delete-items-btn">menu</mat-icon>
 								</button>
                             </div>
                         </div>
@@ -110,27 +118,67 @@
 		                </div>
 		                <div class="col-sm-3">
 		                	<mat-card>
-		                		<mat-nav-list>
-		                			<a *ngFor="let item of items" mat-list-item>
-										<table class="table">
-											<tbody>
-												<tr>
-													<td width="15%" class="text-center">
-														<span class="item-qty">{{ item.quantity }}</span>
-													</td>
-													<td width="55%" class="p-l-10 p-r-10">
-														<strong class="item-name">{{ item.name }}</strong>
-														<br/>
-														<span class="item-price">₱{{ item.price.toFixed(2) }}</span>
-													</td>
-													<td width="30%" class="text-right">
-														<strong class="item-total">₱{{ item.total.toFixed(2) }}</strong>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-									</a>
-								</mat-nav-list>
+								<div class="item-lists">
+									<mat-nav-list>
+										<a *ngFor="let item of items" mat-list-item>
+											<table class="table">
+												<tbody>
+													<tr>
+														<td width="15%" class="text-center">
+															<span class="item-qty">{{ item.quantity }}</span>
+														</td>
+														<td width="55%" class="p-l-10 p-r-10">
+															<strong class="item-name">{{ item.name }}</strong>
+															<br/>
+															<span class="item-price">₱{{ item.price.toFixed(2) }}</span>
+														</td>
+														<td width="30%" class="text-right">
+															<strong class="item-total">₱{{ item.total.toFixed(2) }}</strong>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</a>
+									</mat-nav-list>
+								</div>
+								<div class="sub-total-card-holder">
+									<div class="row">
+										<div class="col text-left">
+											<strong>Sub Total</strong>
+										</div>
+										<div class="col text-right">
+											<strong>₱1,000.00</strong>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col text-left">
+											<strong>Vat (12%)</strong>
+										</div>
+										<div class="col text-right">
+											<strong>₱120.00</strong>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col text-left">
+											<strong>Total Discount</strong>
+										</div>
+										<div class="col text-right">
+											<strong class="c-red">₱120.00</strong>
+										</div>
+									</div>
+									<div class="divider"></div>
+									<div class="row">
+										<div class="col text-left">
+											<h5><strong>Total Payment</strong></h5>
+										</div>
+										<div class="col text-right">
+											<h5><strong>₱1000.00</strong></h5>
+										</div>
+									</div>
+									<button mat-button class="text-center full-width checkout">
+										CHECKOUT
+									</button>
+								</div>
 		                	</mat-card>
 		                </div>
 		            </div>     
