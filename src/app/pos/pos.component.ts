@@ -5,6 +5,7 @@ import { POSDialogComponent } from './pos.dialog.component';
 import { ProductsService } from '../services/products.services';
 import { Product } from '../shared/product';
 import { finalize, filter, map } from 'rxjs/operators';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-pos',
@@ -131,9 +132,9 @@ export class PosComponent implements OnInit, OnDestroy {
   computeTotalPayments() {
     let vat: number = 0;
     let sub: number = 0;
-    let vatMultiplier: number = parseFloat(0.12);
+    let vatMultiplier: any = '0.12';
     this.items.forEach(function(data: any){
-      vat += (parseFloat(data.total) * parseFloat(vatMultiplier));
+      vat += (parseFloat(data.total) * parseFloat(vatMultiplier.toString()));
       sub += parseFloat(data.total);
     });
     this.vatTotal = vat;
@@ -144,4 +145,30 @@ export class PosComponent implements OnInit, OnDestroy {
     console.log(this.subTotal);
   }
 
+  openSwal() {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: 'All items will be deleted!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, keep it'
+        }).then((result) => {
+        if (result.value) {
+            Swal.fire(
+                'Deleted!',
+                'Your imaginary file has been deleted.',
+                'success'
+            )
+        // For more information about handling dismissals please visit
+        // https://sweetalert2.github.io/#handling-dismissals
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+            // Swal.fire(
+            // 'Cancelled',
+            // 'Your imaginary file is safe :)',
+            // 'error'
+            // )
+        }
+    })
+  }
 }
