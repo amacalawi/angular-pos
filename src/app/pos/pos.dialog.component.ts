@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { ModalData } from './model-data';
+import { max } from 'rxjs/operators';
 
 @Component({
   selector: 'pos-dialog',
@@ -48,7 +49,18 @@ export class POSDialogComponent implements OnInit {
   }
 
   addItem() {
-    this.indexs = (sessionStorage.length == 0) ? new Number(0) : new Number(sessionStorage.length);
+
+    let keys: any = []; 
+
+    Object.keys(sessionStorage).forEach(function(key){
+      keys.push(key);
+    });
+
+    keys.sort(function(a, b) {
+        return a.toLowerCase().localeCompare(b.toLowerCase());
+    });
+
+    this.indexs = (sessionStorage.length == 0) ? new Number(0) : parseFloat(keys[keys.length-1]) + 1;
     let discount = new Number(0);
 
     let json = {

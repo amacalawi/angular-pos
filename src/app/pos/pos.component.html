@@ -69,8 +69,8 @@
                     </div>
                     <div class="col-sm-3">
                         <div class="layer">
-                            <span class="items">
-                            7 Items
+                            <span class="items p-l-5">
+                            {{ totalItems }} {{ totalItems > 1 ? 'Items' : 'Item' }}
                             </span>
                             <div class="pull-right">
 
@@ -98,7 +98,7 @@
 		                		<div class="product-list">
 			                		<div class="row">
 			                			<div *ngFor="let product of products" class="col-sm-fix">
-			                				<a href="javascript:;" (click)="openDialog(product.name, product.price, 1, product.price)">
+			                				<a href="javascript:;" (click)="openDialog(product.name, product.price, 0, 0)">
 				                				<div class="wrapper">
 					                				<div class="img-wrapper">
 					                					<img src="{{ product.image }}" />
@@ -147,7 +147,7 @@
 											<strong>Sub Total</strong>
 										</div>
 										<div class="col text-right">
-											<strong>₱1,000.00</strong>
+											<strong>₱{{ subTotal.toFixed(2) }}</strong>
 										</div>
 									</div>
 									<div class="row">
@@ -155,7 +155,7 @@
 											<strong>Vat (12%)</strong>
 										</div>
 										<div class="col text-right">
-											<strong>₱120.00</strong>
+											<strong>₱{{ vatTotal.toFixed(2) }}</strong>
 										</div>
 									</div>
 									<div class="row">
@@ -163,7 +163,7 @@
 											<strong>Total Discount</strong>
 										</div>
 										<div class="col text-right">
-											<strong class="c-red">₱120.00</strong>
+											<strong class="c-red">₱{{ totalDiscount.toFixed(2) }}</strong>
 										</div>
 									</div>
 									<div class="divider"></div>
@@ -172,7 +172,7 @@
 											<h5><strong>Total Payment</strong></h5>
 										</div>
 										<div class="col text-right">
-											<h5><strong>₱1000.00</strong></h5>
+											<h5><strong>₱{{ totalPayment.toFixed(2) }}</strong></h5>
 										</div>
 									</div>
 									<button mat-button class="text-center full-width checkout">

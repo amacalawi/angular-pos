@@ -16,7 +16,7 @@ export class PosComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     // throw new Error("Method not implemented.");
   }
-
+  
   items: any = [];
   name: string;
   price: number;
@@ -26,36 +26,42 @@ export class PosComponent implements OnInit, OnDestroy {
   limit: number;
   page: number = 1;
   products: Product[];
+  totalItems: number;
+  subTotal: number;
+  vatTotal: number;
+  totalDiscount: number;
+  totalPayment: number; 
 
   constructor(private productsService: ProductsService, private router: Router, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.getSelectedItems();
     this.getAllProducts();
+    this.computeTotalPayments();
   }
 
   opened = false;
 
-  log(state) {
+  log(state: any) {
     console.log(state)
   }
 
-  onContextMenuAction($items) {
+  onContextMenuAction($items: string) {
     this.getAllProducts($items);
   }
 
-  goTo(link) {
+  goTo(link: string) {
     setTimeout(() => {
       this.router.navigate(['/' + link]);
     }, 300);
   }
 
   searchbar = true;
-  toggleClass(searchbar) {
+  toggleClass(searchbar: boolean) {
     searchbar = !false;
   }
 
-  openDialog($name, $price, $qty, $total): void {
+  openDialog($name: any, $price: any, $qty: any, $total: any): void {
     const dialogRef = this.dialog.open(POSDialogComponent, {
       width: '270px',
       data: {
@@ -72,6 +78,7 @@ export class PosComponent implements OnInit, OnDestroy {
       this.quantity = 0;
       this.total = 0;
       this.getSelectedItems();
+      this.computeTotalPayments();
       console.log('dialog closed!');
     });
   }
@@ -79,15 +86,24 @@ export class PosComponent implements OnInit, OnDestroy {
   getSelectedItems() {
     this.items = [];
     let arr = [];
-    for (let i = 0; i < sessionStorage.length; i++) {
-      let key: any = i;
+    let keys = [];
+
+    Object.keys(sessionStorage).forEach(function(key){
+      keys.push(key);
+    });
+
+    keys.sort(function(a, b) {
+        return a.toLowerCase().localeCompare(b.toLowerCase());
+    });
+
+    for (let i = 0; i < keys.length; i++) {
+      let key: any = keys[i];
       arr.push(JSON.parse(sessionStorage.getItem(key)));
     }
+    
     this.items = arr;
+    this.totalItems = arr.length;
     console.log(this.items);
-    // Object.keys(sessionStorage).forEach(function(key){
-    //   arr.push(JSON.parse(sessionStorage.getItem(key)));
-    // });
   }
 
   getAllProducts($filter = '') {
@@ -112,5 +128,20 @@ export class PosComponent implements OnInit, OnDestroy {
     }
   }
 
+  computeTotalPayments() {
+    let vat: number = 0;
+    let sub: number = 0;
+    let vatMultiplier: number = parseFloat(0.12);
+    this.items.forEach(function(data: any){
+      vat += (parseFloat(data.total) * parseFloat(vatMultiplier));
+      sub += parseFloat(data.total);
+    });
+    this.vatTotal = vat;
+    this.subTotal = sub;
+    this.totalDiscount = 0;
+    this.totalPayment = (vat + sub);
+    console.log(this.vatTotal);
+    console.log(this.subTotal);
+  }
 
 }
