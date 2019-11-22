@@ -52,15 +52,17 @@ export class POSDialogComponent implements OnInit {
 
     let keys: any = []; 
 
-    Object.keys(sessionStorage).forEach(function(key){
-      keys.push(key);
-    });
+    for (var x in localStorage) {
+        if(!isNaN(localStorage[x])) {
+          keys.push(localStorage[x]);
+        }
+    }
 
     keys.sort(function(a, b) {
         return a.toLowerCase().localeCompare(b.toLowerCase());
     });
 
-    this.indexs = (sessionStorage.length == 0) ? new Number(0) : parseFloat(keys[keys.length-1]) + 1;
+    this.indexs = (localStorage.length == 0) ? new Number(0) : parseFloat(keys[keys.length-1]) + 1;
     let discount = new Number(0);
 
     let json = {
@@ -71,7 +73,8 @@ export class POSDialogComponent implements OnInit {
       total : this.data.total
     }
 
-    sessionStorage.setItem(this.indexs, JSON.stringify(json));
+    console.log(this.indexs);
+    localStorage.setItem(this.indexs, JSON.stringify(json));
     console.log('item added');
   }
 

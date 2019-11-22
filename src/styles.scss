@@ -283,6 +283,10 @@ mat-card .col-sm-fix .txt-wrapper label {
     }
 }
 
+.hidden {
+    display: none;
+}
+
 .p-l-5 {
     padding-left: 5px;
 }
@@ -519,4 +523,85 @@ mat-dialog-content::-webkit-scrollbar-thumb {
     color: #fff;
     border-radius: 0;
     margin-top: 10px;
+}
+
+.content .col-sm-3 mat-card .container-2 h3 {
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 1.2rem;
+    margin-top: 7px;
+    margin-bottom: 20px;
+}
+
+.content .col-sm-3 mat-card .container-2 mat-form-field {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+}
+
+.content .col-sm-3 mat-card .container-2 .mat-form-field input {
+    font-size: 1.8rem;
+}
+
+.content .col-sm-3 mat-card .container-2 .mat-form-field-label {
+    top: 51px !important; 
+}
+
+.content .col-sm-3 mat-card .container-2 .mat-form-field-label.mat-empty {
+    top: 31px !important; 
+    font-size: .75rem;
+}
+
+.content .col-sm-3 mat-card .container-2 .arithmetic-holder {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.content .col-sm-3 mat-card .container-2 button.arithmetic {
+    background: #f5f5f5;
+    margin: 5px 10px;
+}
+
+.content .col-sm-3 mat-card .container-2 button.confirm-btn {
+    background: #ff9f00;
+    color: #fff;
+    border-radius: 0;
+    float: right;
+    margin-right: 15px;
+    margin-top: 73px;
+    width: 43%;
+    // border-radius: .25rem;
+}
+
+.content .col-sm-3 mat-card .container-2 button.back-btn {
+    background: #e1e1e1;
+    color: #333;
+    border-radius: 0;
+    float: left;
+    margin-left: 15px;
+    margin-top: 73px;
+    width: 43%;
+    // border-radius: .25rem;
+}
+
+.content .col-sm-3 mat-card .container-2 button.confirm-btn .mat-button-wrapper,
+.content .col-sm-3 mat-card .container-2 button.back-btn .mat-button-wrapper {
+    font-size: 1.1rem;
+}
+
+.content .col-sm3 mat-card .mat-input-element {
+    caret-color: #ff9f00;
+}
+
+.mat-form-field.mat-focused .mat-form-field-label {
+    color: #ff9f00;
+}
+
+.swal2-icon {
+    font-size: 20px !important;
+    margin-bottom: 15px !important;
+}
+
+.swal2-actions {
+    margin-bottom: 10px !important;
 }

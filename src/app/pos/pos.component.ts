@@ -4,7 +4,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { POSDialogComponent } from './pos.dialog.component';
 import { ProductsService } from '../services/products.services';
 import { Product } from '../shared/product';
-import { finalize, filter, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
+import { FormControl, Validators } from '@angular/forms';
 import Swal from 'sweetalert2'
 
 @Component({
@@ -14,10 +15,16 @@ import Swal from 'sweetalert2'
 })
 export class PosComponent implements OnInit, OnDestroy {
 
+  // amountPaid = new FormControl('', [Validators.required, Validators.amountPaid]);
+
+ 
+
   ngOnDestroy(): void {
     // throw new Error("Method not implemented.");
   }
-  
+
+  pageTitle: string = 'POS';
+  showPayment: Boolean = true;
   items: any = [];
   name: string;
   price: number;
@@ -32,6 +39,12 @@ export class PosComponent implements OnInit, OnDestroy {
   vatTotal: number;
   totalDiscount: number;
   totalPayment: number; 
+  totalPaid: number = 0; 
+  totalChange: number = 0; 
+
+  getErrorMessage() {
+    return (this.totalPaid <= 0 || this.totalPaid.hasError('required')) ? 'You must enter a value on amount paid' : '';
+  }
 
   constructor(private productsService: ProductsService, private router: Router, public dialog: MatDialog) { }
 
@@ -62,6 +75,10 @@ export class PosComponent implements OnInit, OnDestroy {
     searchbar = !false;
   }
 
+  toggleCheckout() {
+    this.showPayment = this.showPayment ? false : true;
+  }
+
   openDialog($name: any, $price: any, $qty: any, $total: any): void {
     const dialogRef = this.dialog.open(POSDialogComponent, {
       width: '270px',
@@ -89,7 +106,7 @@ export class PosComponent implements OnInit, OnDestroy {
     let arr = [];
     let keys = [];
 
-    Object.keys(sessionStorage).forEach(function(key){
+    Object.keys(localStorage).forEach(function(key){
       keys.push(key);
     });
 
@@ -99,7 +116,7 @@ export class PosComponent implements OnInit, OnDestroy {
 
     for (let i = 0; i < keys.length; i++) {
       let key: any = keys[i];
-      arr.push(JSON.parse(sessionStorage.getItem(key)));
+      arr.push(JSON.parse(localStorage.getItem(key)));
     }
     
     this.items = arr;
@@ -145,23 +162,87 @@ export class PosComponent implements OnInit, OnDestroy {
     console.log(this.subTotal);
   }
 
-  openSwal() {
+  resetItems() {
+    localStorage.clear();
+    this.getSelectedItems();
+    this.vatTotal = 0;
+    this.subTotal = 0;
+    this.totalDiscount = 0;
+    this.totalPayment = 0; 
+    this.totalPaid = 0; 
+    this.totalChange = 0; 
+    this.showPayment = true;
+  }
+
+  compute(v: number) {
+    let vals = new Number(this.totalPaid);
+    let str = new String(this.totalPaid);
+
+    if (vals == 0 && str.length <= 2) {
+      this.totalPaid = v;
+    } else {
+      this.totalPaid += v;
+    }
+
+    this.totalChange = (this.totalPaid - this.totalPayment);
+  }
+
+  clear() {
+    let vals = new String(this.totalPaid);
+
+    if (vals.length > 1) {
+      this.totalPaid = parseFloat(vals.substring(0, vals.length - 1));
+    } else {
+      this.totalPaid = 0;
+    }
+
+    this.totalChange = (this.totalPaid - this.totalPayment);
+  }
+  
+  deleteStoredItems() {
+    if (localStorage.length > 0) {
+      Swal.fire({
+          title: 'Are you sure?',
+          text: 'All items will be reset!',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Yes, reset it!',
+          cancelButtonText: 'No, keep it'
+          }).then((result) => {
+          if (result.value) {
+              this.resetItems();
+              Swal.fire(
+                  'Success!',
+                  'All stored items has been reset successfully.',
+                  'success'
+              )
+          } else if (result.dismiss === Swal.DismissReason.cancel) {
+              // Swal.fire(
+              // 'Cancelled',
+              // 'Your imaginary file is safe :)',
+              // 'error'
+              // )
+          }
+      })
+    }
+  }
+
+  checkout() {
     Swal.fire({
         title: 'Are you sure?',
-        text: 'All items will be deleted!',
+        text: 'All selected items will be sold!',
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonText: 'Yes, delete it!',
-        cancelButtonText: 'No, keep it'
+        confirmButtonText: 'Yes, confirm it!',
+        cancelButtonText: 'No, not now'
         }).then((result) => {
         if (result.value) {
+            this.resetItems();
             Swal.fire(
-                'Deleted!',
-                'Your imaginary file has been deleted.',
+                'Success!',
+                'All selected items has been successfully sold.',
                 'success'
             )
-        // For more information about handling dismissals please visit
-        // https://sweetalert2.github.io/#handling-dismissals
         } else if (result.dismiss === Swal.DismissReason.cancel) {
             // Swal.fire(
             // 'Cancelled',

@@ -8,7 +8,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatButtonModule, MatGridListModule, MatMenuModule, MatCardModule, MatDialogModule } from  '@angular/material';
+import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatButtonModule, MatGridListModule, MatMenuModule, MatCardModule, MatDialogModule, MatInputModule, MatSelectModule } from  '@angular/material';
 import { PosComponent } from './pos/pos.component';
 import { POSDialogComponent } from './pos/pos.dialog.component';
 
@@ -37,7 +37,9 @@ import { ProductFilterPipe } from './shared/product-filter.pipe';
     MatMenuModule,
     MatCardModule,
     MatDialogModule,
-    FormsModule
+    FormsModule,
+    MatInputModule,
+    MatSelectModule 
   ],
   providers: [
     ProductsService,
