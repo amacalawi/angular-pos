@@ -63,7 +63,6 @@ export class PosComponent implements OnInit, OnDestroy {
       .fromEvent("message").subscribe(data => {
         console.log(data);
       });
-      // .map( (data: any) => data.msg);
   }
 
   opened = false;

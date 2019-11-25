@@ -2,6 +2,7 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
+@import '~animate.css/animate.min';
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -28,8 +29,13 @@ $point-of-sales-theme: mat-light-theme($point-of-sales-primary, $point-of-sales-
 
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; background-color: #edecec !important; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body { height: 100%; 
+    background-color: #f5f5f8 !important;
+}
+body { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+}
 
 mat-sidenav-container {
   height: 100%;
@@ -183,6 +189,8 @@ mat-nav-list h4.text-divider {
 .content {
     position: relative;
     margin-top: 64px;
+    background-image: url(assets/img/bg.svg);
+    background-color: #f5f5f8 !important;
 }
 
 .content .col-sm-9 mat-card {
