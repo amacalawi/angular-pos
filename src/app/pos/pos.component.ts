@@ -4,9 +4,12 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { POSDialogComponent } from './pos.dialog.component';
 import { ProductsService } from '../services/products.services';
 import { Product } from '../shared/product';
+import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { FormControl, Validators } from '@angular/forms';
+import { Socket } from 'ngx-socket-io';
 import Swal from 'sweetalert2'
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'app-pos',
@@ -43,15 +46,24 @@ export class PosComponent implements OnInit, OnDestroy {
   totalChange: number = 0; 
 
   getErrorMessage() {
-    return (this.totalPaid <= 0 || this.totalPaid.hasError('required')) ? 'You must enter a value on amount paid' : '';
+    return (this.totalPaid <= 0) ? 'You must enter a value on amount paid' : '';
   }
 
-  constructor(private productsService: ProductsService, private router: Router, public dialog: MatDialog) { }
+  constructor(private socket: Socket, private productsService: ProductsService, private router: Router, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.getSelectedItems();
     this.getAllProducts();
     this.computeTotalPayments();
+    this.getMessage();
+  }
+
+  getMessage() {
+    return this.socket
+      .fromEvent("message").subscribe(data => {
+        console.log(data);
+      });
+      // .map( (data: any) => data.msg);
   }
 
   opened = false;

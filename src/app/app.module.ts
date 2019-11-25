@@ -10,10 +10,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatButtonModule, MatGridListModule, MatMenuModule, MatCardModule, MatDialogModule, MatInputModule, MatSelectModule } from  '@angular/material';
 import { PosComponent } from './pos/pos.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 import { POSDialogComponent } from './pos/pos.dialog.component';
 
 import { ProductsService } from './services/products.services';
 import { ProductFilterPipe } from './shared/product-filter.pipe';
+
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+const config: SocketIoConfig = { url: 'http://localhost:8988', options: {} };
 
 @NgModule({
   declarations: [
@@ -21,9 +25,11 @@ import { ProductFilterPipe } from './shared/product-filter.pipe';
     HomepageComponent,
     PosComponent,
     POSDialogComponent,
-    ProductFilterPipe
+    ProductFilterPipe,
+    NotificationsComponent
   ],
   imports: [
+    SocketIoModule.forRoot(config),
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
