@@ -8,8 +8,8 @@ import { HomepageComponent } from './homepage/homepage.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatButtonModule, MatGridListModule, MatMenuModule, MatCardModule, MatDialogModule, MatInputModule, MatSelectModule } from  '@angular/material';
-import { PosComponent } from './pos/pos.component';
+import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatButtonModule, MatGridListModule, MatMenuModule, MatCardModule, MatDialogModule, MatInputModule, MatSelectModule, MatSnackBarModule } from  '@angular/material';
+import { PosComponent, NotifComponent } from './pos/pos.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { POSDialogComponent } from './pos/pos.dialog.component';
 
@@ -26,7 +26,8 @@ const config: SocketIoConfig = { url: 'http://localhost:8988', options: {} };
     PosComponent,
     POSDialogComponent,
     ProductFilterPipe,
-    NotificationsComponent
+    NotificationsComponent,
+    NotifComponent
   ],
   imports: [
     SocketIoModule.forRoot(config),
@@ -45,13 +46,14 @@ const config: SocketIoConfig = { url: 'http://localhost:8988', options: {} };
     MatDialogModule,
     FormsModule,
     MatInputModule,
-    MatSelectModule 
+    MatSelectModule,
+    MatSnackBarModule
   ],
   providers: [
     ProductsService,
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  entryComponents: [POSDialogComponent]
+  entryComponents: [POSDialogComponent, NotifComponent]
 })
 export class AppModule { }

@@ -10,6 +10,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { Socket } from 'ngx-socket-io';
 import Swal from 'sweetalert2'
 import 'rxjs/add/operator/map';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-pos',
@@ -44,12 +45,13 @@ export class PosComponent implements OnInit, OnDestroy {
   totalPayment: number; 
   totalPaid: number = 0; 
   totalChange: number = 0; 
+  durationInSeconds = 5;
 
   getErrorMessage() {
     return (this.totalPaid <= 0) ? 'You must enter a value on amount paid' : '';
   }
 
-  constructor(private socket: Socket, private productsService: ProductsService, private router: Router, public dialog: MatDialog) { }
+  constructor(private _snackBar: MatSnackBar, private socket: Socket, private productsService: ProductsService, private router: Router, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.getSelectedItems();
@@ -62,7 +64,16 @@ export class PosComponent implements OnInit, OnDestroy {
     return this.socket
       .fromEvent("message").subscribe(data => {
         console.log(data);
+        this.openNotif();
       });
+  }
+ 
+  openNotif() {
+    this._snackBar.openFromComponent(NotifComponent, {
+      duration: this.durationInSeconds * 1000,
+      verticalPosition: 'bottom',
+      horizontalPosition: 'left'
+    });
   }
 
   opened = false;
@@ -264,3 +275,14 @@ export class PosComponent implements OnInit, OnDestroy {
     })
   }
 }
+
+@Component({
+  selector: 'pos.notif.component',
+  templateUrl: 'pos.notif.component.html',
+  styles: [`
+    .notif-layer {
+      color: hotpink;
+    }
+  `],
+})
+export class NotifComponent {}

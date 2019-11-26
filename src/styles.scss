@@ -452,10 +452,16 @@ mat-dialog-content::-webkit-scrollbar-thumb {
 .content .col-sm-3 mat-card .mat-list-base .mat-list-item {
     margin-top: .5rem;
     padding: 5px 0;
+    margin-left: 10px;
+}
+
+.content .col-sm-3 mat-card .mat-list-base .mat-list-item table tr td:nth-child(3) {
+    padding-right: 10px;
 }
 
 .content .col-sm-3 mat-card .mat-list-item-content {
     padding-right: 2px;
+    padding-left: 0px;
 }
 
 .content .col-sm-3 mat-card .mat-list-base .mat-list-item:first-child {
@@ -485,7 +491,7 @@ mat-dialog-content::-webkit-scrollbar-thumb {
 }
 
 .content .col-sm-3 mat-card .item-lists {
-    height: calc(100vh - 273px);
+    height: calc(100vh - 310px);
     overflow-y: scroll;
     overflow-x: hidden;
 }
@@ -531,6 +537,13 @@ mat-dialog-content::-webkit-scrollbar-thumb {
     color: #fff;
     border-radius: 0;
     margin-top: 10px;
+}
+
+.content .col-sm-3 mat-card .container-1 h3 {
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 1.2rem;
+    margin-top: 7px;
 }
 
 .content .col-sm-3 mat-card .container-2 h3 {
